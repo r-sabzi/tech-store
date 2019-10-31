@@ -18,10 +18,10 @@ class ProductProvider extends Component{
     this.setState({cartOpen:!this.state.cartOpen})
   }
   openCart=() => {
-    this.setState({sidebarOpen:true})
+    this.setState({cartOpen:true})
   }
   closeCart = () => {
-    this.setState({sidebarOpen:false})
+    this.setState({cartOpen:false})
   }
 
   render() {
