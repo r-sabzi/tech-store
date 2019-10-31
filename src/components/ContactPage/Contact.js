@@ -7,7 +7,7 @@ export default function Contact() {
         <div className="row">
           <div className="col-10 mx-auto col-md-6 my-3">
             <Title title="contact us" />
-            <form className="mt-5">
+            <form action="https://formspree.io/r.kh.sabzi@gmail.com" method="POST" className="mt-5">
               <div className="form-group">
                 <input type="text" name="firstName" placeholder="john smith" className="form-control" />
               </div>
@@ -20,8 +20,11 @@ export default function Contact() {
               <div className="form">
                 <textarea name="messege" rows="10" className="form-control" placeholder="hello there body"></textarea>
               </div>
+              <div className="for-group mt-3">
+                <input type="submit" className="form-control bg-primary text-white" value="send" />
+              </div>
             </form>
-          </div>          
+          </div>
         </div>
       </div>
     </section>
