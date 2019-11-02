@@ -2,7 +2,7 @@ import React from 'react'
 import Product from '../Product'
 import Title from '../Title'
 import { Link } from 'react-router-dom'
-import { productConsumer, ProductConsumer } from '../../context'
+import { ProductConsumer } from '../../context'
 
 
 export default function Featured() {
@@ -15,10 +15,17 @@ export default function Featured() {
             {value => {
               const { featuredProducts} = value;
               return featuredProducts.map( product => {
-                  return <Product key={Product.id} product={product}/>
+                  return <Product key={product.id} product={product}/>
               })
             }}
           </ProductConsumer>
+        </div>
+        <div className="row mt-5">
+          <div className="col text-center">
+            <Link to="/products" className="main-link">
+              our products
+            </Link>
+          </div>
         </div>
       </div>
     </section>
