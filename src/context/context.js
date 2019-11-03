@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { linkData } from './linkData'
 import { socialData } from './socialData'
 import { items } from './productData'
+import { thisExpression } from '@babel/types';
 
 const ProductContext = React.createContext();
 
@@ -44,7 +45,7 @@ class ProductProvider extends Component{
       featuredProducts,
       cart: this.getStorageCart(),
       singleProduct: this.getStorageProduct(),
-      loading:false
+      loading:true
     },
       () => {
       this.addTotal()
@@ -60,7 +61,9 @@ class ProductProvider extends Component{
     return cart;
   }
   getStorageProduct = () => {
-    return [];
+    return localStorage.getItem("singleProduct")
+      ? JSON.parse(localStorage.getItem("SingleProduct"))
+      :{}
   }
   getTotal = () => {
     let subTotal = 0
@@ -121,7 +124,12 @@ class ProductProvider extends Component{
     )
   }
   setSingleProduct = (id) => {
-    console.log(`single product${id}`);
+    let product = this.state.storeProducts.find(item => item.id === id)
+    localStorage.setItem("singleProduct", JSON.stringify(product))
+    this.setState({
+      singleProduct: { ...product },
+      loading:false
+    })
   }
   
   handleSidebar=() => {
