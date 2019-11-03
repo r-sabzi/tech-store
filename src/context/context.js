@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { linkData } from './linkData'
 import { socialData } from './socialData'
 import { items } from './productData'
-import { thisExpression } from '@babel/types';
+
 
 const ProductContext = React.createContext();
 
@@ -22,7 +22,7 @@ class ProductProvider extends Component{
     filteredProducts: [],
     featuredProducts: [],
     singleProduct:{},
-    loading:false
+    loading:true
   }
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class ProductProvider extends Component{
       featuredProducts,
       cart: this.getStorageCart(),
       singleProduct: this.getStorageProduct(),
-      loading:true
+      loading:false
     },
       () => {
       this.addTotal()
@@ -61,9 +61,14 @@ class ProductProvider extends Component{
     return cart;
   }
   getStorageProduct = () => {
-    return localStorage.getItem("singleProduct")
-      ? JSON.parse(localStorage.getItem("SingleProduct"))
-      :{}
+    let sProduct;
+    if (localStorage.getItem("singleProduct")) {     
+      sProduct = JSON.parse(localStorage.getItem("singleProduct"))
+    } else {
+      sProduct = []
+    }
+    return sProduct;
+    // return localStorage.getItem("singleProduct")?JSON.parse(localStorage.getItem("SingleProduct")):{}
   }
   getTotal = () => {
     let subTotal = 0
@@ -129,7 +134,7 @@ class ProductProvider extends Component{
     this.setState({
       singleProduct: { ...product },
       loading:false
-    })
+    }) 
   }
   
   handleSidebar=() => {

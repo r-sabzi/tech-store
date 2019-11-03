@@ -1,5 +1,5 @@
 import React from 'react'
-import { productConsumer, ProductConsumer } from '../../context'
+import { ProductConsumer } from '../../context'
 import Title from '../Title'
 import Product from '../Product'
 
