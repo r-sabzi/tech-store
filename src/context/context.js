@@ -4,6 +4,7 @@ import { socialData } from './socialData'
 import { items } from './productData'
 
 
+
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component{
@@ -150,6 +151,19 @@ class ProductProvider extends Component{
     this.setState({cartOpen:false})
   }
 
+  increment = (id) => {
+    
+  }
+  decrement = (id) => {
+
+  }
+  removeItem = (id) => {
+
+  }
+  clearCart = () => {
+
+  }
+
   render() {
     return (
       <ProductContext.Provider value={{
@@ -159,7 +173,11 @@ class ProductProvider extends Component{
         openCart :this.openCart,
         closeCart: this.closeCart,
         addToCart: this.addToCart,
-        setSingleProduct:this.setSingleProduct
+        setSingleProduct: this.setSingleProduct,
+        increment: this.increment,
+        decrement: this.decrement,
+        removeItem: this.removeItem,
+        clearCart:this.clearCart
     }}>
       {this.props.children}
     </ProductContext.Provider>
