@@ -152,16 +152,60 @@ class ProductProvider extends Component{
   }
 
   increment = (id) => {
-    
+    let tempCart = [...this.state.cart]
+    const cartItem = tempCart.find(item => item.id === id)
+    cartItem.count++
+    cartItem.total = cartItem.count * cartItem.price
+    cartItem.total = parseFloat(cartItem.total.toFixed(2))
+
+    this.setState(()=>{
+      return {
+        cart:[...tempCart]
+      }
+    }, () => {
+        this.addTotal()
+        this.syncStorage()  
+    })
   }
   decrement = (id) => {
-
+    let tempCart = [...this.state.cart]
+    const cartItem = tempCart.find(item => item.id === id)
+    cartItem.count = cartItem.count - 1
+    if (cartItem.count === 0) {
+      this.removeItem(id)
+    } else {
+      cartItem.total = cartItem.count * cartItem.price
+      cartItem.total = parseFloat(cartItem.total.toFixed(2))
+      this.setState(() => {
+        return {
+          cart: [...tempCart]
+        }
+      }, () => {
+        this.addTotal()
+        this.syncStorage()
+      })
+    } 
   }
   removeItem = (id) => {
-
+    let tempCart = [...this.state.cart]
+    tempCart=tempCart.filter(item=>item.id!==id)
+    this.setState(() => {
+      return {
+        cart: [...tempCart]
+      }
+    }, () => {
+      this.addTotal()
+      this.syncStorage()
+    })
   }
   clearCart = () => {
-
+    this.setState({
+      cart:[]
+    },
+      () => {
+        this.addTotal()
+        this.syncStorage()
+    })
   }
 
   render() {
