@@ -46,8 +46,8 @@ class ProductProvider extends Component{
     );
     let featuredProducts = storeProducts.filter(item => item.featured === true);
     
-let maxPrice=Math.max(...storeProducts.map(item=>item.price))
-
+    let maxPrice=Math.max(...storeProducts.map(item=>item.price))
+    console.log(maxPrice);
     this.setState({
       storeProducts,
       filteredProducts: storeProducts,
@@ -55,7 +55,8 @@ let maxPrice=Math.max(...storeProducts.map(item=>item.price))
       cart: this.getStorageCart(),
       singleProduct: this.getStorageProduct(),
       loading: false,
-      max:maxPrice
+      max: maxPrice,
+      price:maxPrice
     },
       () => {
       this.addTotal()
@@ -230,7 +231,32 @@ let maxPrice=Math.max(...storeProducts.map(item=>item.price))
     )
   }
   sortData = () => {
+    const { storeProducts, price, company, shipping, search } = this.state;
+
+    let tempPrice = parseInt(price);
+
+    let tempProducts = [...storeProducts];
     
+    tempProducts = tempProducts.filter(item => item.price <= tempPrice);
+    
+    if (company !== "all") {
+      tempProducts = tempProducts.filter(item => item.company === company);
+    }
+    if (shipping) {
+      tempProducts = tempProducts.filter(item => item.freeShipping === true);
+    }
+    if (search.length > 0) {
+      tempProducts = tempProducts.filter(item => {
+        let tempSearch = search.toLowerCase();
+        let tempTitle = item.title.toLowerCase().slice(0, search.length);
+        if (tempSearch === tempTitle) {
+          return item;
+        }
+      });
+    }
+    this.setState({
+      filteredProducts: tempProducts
+    });
   }
 
   render() {
