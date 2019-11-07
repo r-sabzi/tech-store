@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export default function CartColumns() {
   return (
@@ -24,5 +24,5 @@ export default function CartColumns() {
         </div>
       </div>
     </div>
-  )
+  );
 }

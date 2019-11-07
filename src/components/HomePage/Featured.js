@@ -1,9 +1,8 @@
-import React from 'react'
-import Product from '../Product'
-import Title from '../Title'
-import { Link } from 'react-router-dom'
-import { ProductConsumer } from '../../context'
-
+import React from "react";
+import Product from "../Product";
+import Title from "../Title";
+import { Link } from "react-router-dom";
+import { ProductConsumer } from "../../context";
 
 export default function Featured() {
   return (
@@ -13,10 +12,10 @@ export default function Featured() {
         <div className="row my-5">
           <ProductConsumer>
             {value => {
-              const { featuredProducts} = value;
-              return featuredProducts.map( product => {
-                return <Product key={product.id} product={product}/>
-              })
+              const { featuredProducts } = value;
+              return featuredProducts.map(product => {
+                return <Product key={product.id} product={product} />;
+              });
             }}
           </ProductConsumer>
         </div>
@@ -29,5 +28,5 @@ export default function Featured() {
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

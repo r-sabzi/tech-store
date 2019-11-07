@@ -15,13 +15,13 @@ export default function ProductFilter() {
           handleChange,
           storeProducts
         } = value;
-        console.log("fil",max);
-        let companies = new Set()
-        companies.add("all")
+        console.log("fil", max);
+        let companies = new Set();
+        companies.add("all");
         for (let product in storeProducts) {
-          companies.add(storeProducts[product]["company"])
+          companies.add(storeProducts[product]["company"]);
         }
-        companies=[...companies]
+        companies = [...companies];
 
         return (
           <div className="row my-5">
@@ -47,11 +47,13 @@ export default function ProductFilter() {
                     value={company}
                     className="filter-item"
                   >
-                    {
-                      companies.map((company, index) => {
-                        return <option key={index} value={company}>{company}</option>
-                      })  
-                    }
+                    {companies.map((company, index) => {
+                      return (
+                        <option key={index} value={company}>
+                          {company}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 <div>

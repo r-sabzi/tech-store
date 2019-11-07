@@ -1,8 +1,8 @@
-import React from 'react'
-import Title from '../Title'
-import CartList from './CartList'
-import CartTotal from './CartTotal'
-import CartColumns from './CartColumns'
+import React from "react";
+import Title from "../Title";
+import CartList from "./CartList";
+import CartTotal from "./CartTotal";
+import CartColumns from "./CartColumns";
 
 export default function Cart() {
   return (
@@ -12,7 +12,7 @@ export default function Cart() {
       </div>
       <CartColumns />
       <CartList />
-      <CartTotal/>
+      <CartTotal />
     </section>
-  )
+  );
 }
